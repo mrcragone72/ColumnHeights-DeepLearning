@@ -1,0 +1,78 @@
+{
+  "data_kwargs" : {
+
+       "experiment" : "FeMnO_-112",
+        "data_folder_path": "experiments/FeMnO_-112/data/",
+        "training_data" : true,
+        "ATK_path" : "ATK_structures/FeMnO_-112/",
+        "n_structures" : 5,
+      "first_data_index" : 1,
+      "num_data" :8000,
+      "n_processors" : 8},
+    
+  "structure_kwargs": {
+                  "spatial_domain" : 50,
+                  "random_transl_xy": false,
+                   "t_xy": 0.125,
+                  "random_rot_y":false,
+                  "alpha_y": [0, 45, 90, 135, 180, 225, 270, 315],
+                  "elements_random_mix": ["Mn","Fe"]
+                },
+
+  "STEM_image_kwargs":{
+
+    "QSTEM_mode" : "STEM",
+    "image_size"  : 512,
+    "add_local_norm": true,
+    "add_noise": true,
+    "noise_mean": 0,
+    "noise_std": 1,
+    "spot_size": 0.4,
+
+
+   "slice_thickness":0.2,
+    "probe": 8,
+    "v0": [180,200],
+    "alpha": [15,20],
+    "defocus": [-10,10],
+    "Cs" : [180,220],
+    "astig_mag": [18,22],
+    "astig_angle" : [12,16],
+    "a33": 0,
+    "phi33": 30},
+
+
+  "model_kwargs": {
+
+    "results_folder_path" : "experiments/FeMnO_-112/results/results_model-parallel/",
+    "n_gpus" : 1,
+    "horovod" : true,
+    "mixed_precision" : false,
+
+    "batch_size" : 8,
+    "input_shape" : 512,
+    "num_chemical_elements" : 2,
+    "remove_O": false,
+    "pre_trained_weights_path" : "results/pre_trained_model_weights/epoch-171.h5",
+    "pre_trained_layers_at" : "up_sampling_1_out/convolution_2_batch_normalization",
+    "pretrained" : false,
+    "freeze" : false,
+    "num_chemical_elements_pre_trained_model" : 5,
+
+    "optimizer" : "adam",
+    "learning_rate" : 1e-3,
+    "loss" : "MSE",
+
+
+    "first_epoch" : 0,
+    "num_epochs" : 500,
+    "save_every" : 10
+  },
+
+  "plot_kwargs": {
+  "color_elements" : {"Fe" : "orange",
+                      "Mn" : "purple",
+                      "O" : "red"}
+  }
+
+}
